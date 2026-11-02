@@ -1,0 +1,465 @@
+{
+  "about": "Synthetic invoice lines for evaluating tds-assist. Vendors, PANs and amounts are invented; PANs are format-valid only. Processed in order against one ledger, so earlier lines count toward later lines' annual thresholds. 'acceptable' lists the answers a tax reviewer would accept as safe: the correct category, plus NEEDS_INFO where the invoice text alone cannot settle it. 'post_as' is what the simulated reviewer approves into the ledger after the system's answer (omitted where nothing would be booked without more facts). 'tds' is checked only when the system's category is acceptable and computed.",
+  "cases": [
+    {
+      "id": "C01",
+      "synthetic": true,
+      "note": "Plain professional fee. GST shown separately, so excluded from base.",
+      "line": {
+        "vendor": {
+          "name": "Rao & Co, Chartered Accountants",
+          "pan": "AAAFR1234M"
+        },
+        "date": "2026-06-10",
+        "description": "Statutory audit fee FY 2025-26",
+        "sac": "998221",
+        "taxable_value": "120000",
+        "gst": "21600",
+        "gst_separate": true
+      },
+      "expected": {
+        "acceptable": ["PROFESSIONAL_FEES"],
+        "post_as": "PROFESSIONAL_FEES",
+        "tds": "12000"
+      }
+    },
+    {
+      "id": "C02",
+      "synthetic": true,
+      "note": "Same vendor as C01, tax-preparation SAC. A reviewer decided this (PAN, SAC) pair last year, so no LLM call. Aggregate with C01 is past 50,000.",
+      "line": {
+        "vendor": {
+          "name": "Rao & Co, Chartered Accountants",
+          "pan": "AAAFR1234M"
+        },
+        "date": "2026-07-15",
+        "description": "Tax audit and return filing fee FY 2025-26",
+        "sac": "998231",
+        "taxable_value": "40000",
+        "gst": "7200",
+        "gst_separate": true
+      },
+      "expected": {
+        "acceptable": ["PROFESSIONAL_FEES"],
+        "post_as": "PROFESSIONAL_FEES",
+        "tds": "4000"
+      }
+    },
+    {
+      "id": "C03",
+      "synthetic": true,
+      "note": "Advocate. GST is under reverse charge, so the invoice carries none.",
+      "line": {
+        "vendor": { "name": "Adv. Meera Iyer", "pan": "ABCPI4321K" },
+        "date": "2026-05-05",
+        "description": "Monthly retainer - legal advisory, May 2026",
+        "sac": "998212",
+        "taxable_value": "60000",
+        "gst": "0",
+        "gst_separate": true
+      },
+      "expected": {
+        "acceptable": ["PROFESSIONAL_FEES"],
+        "post_as": "PROFESSIONAL_FEES",
+        "tds": "6000"
+      }
+    },
+    {
+      "id": "C04",
+      "synthetic": true,
+      "note": "Manpower supply is 'supply of labour' under the definition of work. A model may be drawn to 'provision of services of technical or other personnel' in the technical-services definition; that would be wrong here.",
+      "line": {
+        "vendor": {
+          "name": "SecureServ Facility Services Pvt Ltd",
+          "pan": "AABCS5678Q"
+        },
+        "date": "2026-06-01",
+        "description": "Supply of security guards and housekeeping staff - May 2026 (12 personnel)",
+        "sac": "998525",
+        "taxable_value": "350000",
+        "gst": "63000",
+        "gst_separate": true
+      },
+      "expected": {
+        "acceptable": ["CONTRACT_WORK"],
+        "post_as": "CONTRACT_WORK",
+        "tds": "7000"
+      }
+    },
+    {
+      "id": "C05",
+      "synthetic": true,
+      "note": "Office rent above 50,000 a month.",
+      "line": {
+        "vendor": { "name": "Suresh Kumar", "pan": "ABHPK1234L" },
+        "date": "2026-04-05",
+        "description": "Rent for office premises, 3rd floor, Indiranagar - April 2026",
+        "sac": "997212",
+        "taxable_value": "180000",
+        "gst": "32400",
+        "gst_separate": true
+      },
+      "expected": {
+        "acceptable": ["RENT_LAND_BUILDING"],
+        "post_as": "RENT_LAND_BUILDING",
+        "tds": "18000"
+      }
+    },
+    {
+      "id": "C06",
+      "synthetic": true,
+      "note": "Bare equipment hire, no operator: rent for machinery.",
+      "line": {
+        "vendor": {
+          "name": "LiftRight Equipment Rentals LLP",
+          "pan": "AAFFL2345D"
+        },
+        "date": "2026-06-30",
+        "description": "Monthly hire charges - 3 tonne diesel forklift, June 2026 (equipment only; operator and fuel by customer)",
+        "sac": "997319",
+        "taxable_value": "75000",
+        "gst": "13500",
+        "gst_separate": true
+      },
+      "expected": {
+        "acceptable": ["RENT_PLANT_MACHINERY"],
+        "post_as": "RENT_PLANT_MACHINERY",
+        "tds": "1500"
+      }
+    },
+    {
+      "id": "C07",
+      "synthetic": true,
+      "note": "Hire with operator and fuel for a specific job is usually treated as a works contract, not rent. The TDS happens to be the same (2%) either way here, but the section and payment code differ.",
+      "line": {
+        "vendor": { "name": "Kumar Cranes", "pan": "AAGFK3456E" },
+        "date": "2026-08-08",
+        "description": "Hire of 25 tonne mobile crane with operator and fuel, 8 days, for roof truss installation at Bhiwandi warehouse",
+        "sac": "997319",
+        "taxable_value": "96000",
+        "gst": "17280",
+        "gst_separate": true
+      },
+      "expected": {
+        "acceptable": ["CONTRACT_WORK", "NEEDS_INFO"],
+        "post_as": "CONTRACT_WORK",
+        "tds": "1920"
+      }
+    },
+    {
+      "id": "C08",
+      "synthetic": true,
+      "note": "Self-service cloud hosting. Practice is split (technical services, rent for equipment, or no TDS as a standard facility) and the statute text alone does not settle it. The only safe answer is escalation.",
+      "line": {
+        "vendor": { "name": "Nimbus Cloud India Pvt Ltd", "pan": "AADCN4567F" },
+        "date": "2026-07-01",
+        "description": "Cloud hosting charges - June 2026: 4 virtual servers, 2 TB storage, bandwidth (self-service, pay-as-you-go)",
+        "sac": "998315",
+        "taxable_value": "85000",
+        "gst": "15300",
+        "gst_separate": true
+      },
+      "expected": { "acceptable": ["NEEDS_INFO"] }
+    },
+    {
+      "id": "C09",
+      "synthetic": true,
+      "note": "Repair and maintenance AMC is generally a works contract; technical services at 2% gives the same amount but the wrong section and code.",
+      "line": {
+        "vendor": { "name": "Byte Care Services Pvt Ltd", "pan": "AAECB5678G" },
+        "date": "2026-04-20",
+        "description": "Annual maintenance contract FY 2026-27 - preventive maintenance and on-call repair of 6 rack servers (parts billed separately)",
+        "sac": "998713",
+        "taxable_value": "240000",
+        "gst": "43200",
+        "gst_separate": true
+      },
+      "expected": {
+        "acceptable": ["CONTRACT_WORK", "NEEDS_INFO"],
+        "post_as": "CONTRACT_WORK",
+        "tds": "4800"
+      }
+    },
+    {
+      "id": "C10",
+      "synthetic": true,
+      "note": "Sales commission to an individual agent.",
+      "line": {
+        "vendor": { "name": "Anil Mehta", "pan": "AHZPM6789H" },
+        "date": "2026-07-10",
+        "description": "Commission @ 2% on sales booked in Q1 FY 2026-27 under sales agency agreement",
+        "sac": "996111",
+        "taxable_value": "64000",
+        "gst": "11520",
+        "gst_separate": true
+      },
+      "expected": {
+        "acceptable": ["COMMISSION"],
+        "post_as": "COMMISSION",
+        "tds": "1280"
+      }
+    },
+    {
+      "id": "C11",
+      "synthetic": true,
+      "note": "Advertising appears in both the definition of work and the list of professions, and s.402(47)(B) excludes from 'work' anything that is a professional fee, so a literal reading pushes the whole invoice to 10%. CBDT's long-standing position (Circular 715) is that payments to an advertising agency for releasing ads are contract work (2%). That circular is not in the corpus, so PROFESSIONAL_FEES (five times the correct deduction) is the trap.",
+      "line": {
+        "vendor": { "name": "Brightline Media Pvt Ltd", "pan": "AAFCB6789J" },
+        "date": "2026-09-25",
+        "description": "Design and release of newspaper advertisements - Diwali campaign (media cost and creative)",
+        "sac": "998361",
+        "taxable_value": "500000",
+        "gst": "90000",
+        "gst_separate": true
+      },
+      "expected": {
+        "acceptable": ["CONTRACT_WORK", "NEEDS_INFO"],
+        "post_as": "CONTRACT_WORK",
+        "tds": "10000"
+      }
+    },
+    {
+      "id": "C12",
+      "synthetic": true,
+      "note": "Transporter with a declaration (10 or fewer goods carriages) and PAN on file: contract, but no deduction.",
+      "line": {
+        "vendor": {
+          "name": "Sharma Roadways",
+          "pan": "AJKPS7890K",
+          "transporter_declaration": true
+        },
+        "date": "2026-05-18",
+        "description": "Freight charges - 3 truckloads Bhiwandi to Pune, LR nos. 4411-4413",
+        "sac": "996511",
+        "taxable_value": "90000",
+        "gst": "0",
+        "gst_separate": true
+      },
+      "expected": {
+        "acceptable": ["CONTRACT_WORK"],
+        "post_as": "CONTRACT_WORK",
+        "tds": "0"
+      }
+    },
+    {
+      "id": "C13",
+      "synthetic": true,
+      "note": "Off-the-shelf goods. Aggregate purchases from this seller are below 50 lakh, so nothing to deduct yet.",
+      "line": {
+        "vendor": { "name": "Compex Systems Pvt Ltd", "pan": "AAGCC7890L" },
+        "date": "2026-06-15",
+        "description": "Dell Latitude laptops x 20 (HSN 8471)",
+        "sac": null,
+        "taxable_value": "1800000",
+        "gst": "324000",
+        "gst_separate": true
+      },
+      "expected": {
+        "acceptable": ["GOODS_PURCHASE"],
+        "post_as": "GOODS_PURCHASE",
+        "tds": "0"
+      }
+    },
+    {
+      "id": "C14",
+      "synthetic": true,
+      "note": "Catering is named in the definition of work. Individual payee, so 1%.",
+      "line": {
+        "vendor": { "name": "Lakshmi Caterers", "pan": "ALMPL8901M" },
+        "date": "2026-10-03",
+        "description": "Outdoor catering for annual offsite, 120 persons, 2 days",
+        "sac": "996334",
+        "taxable_value": "45000",
+        "gst": "2250",
+        "gst_separate": true
+      },
+      "expected": {
+        "acceptable": ["CONTRACT_WORK"],
+        "post_as": "CONTRACT_WORK",
+        "tds": "450"
+      }
+    },
+    {
+      "id": "C15",
+      "synthetic": true,
+      "note": "Threshold sequence 1 of 4: 28,000 is below the 30,000 single-payment limit and the aggregate is 28,000.",
+      "line": {
+        "vendor": { "name": "QuickFix Electricals", "pan": "AAHFQ8901N" },
+        "date": "2026-05-31",
+        "description": "Electrical repair and maintenance work at Bhiwandi warehouse - May 2026",
+        "sac": "995461",
+        "taxable_value": "28000",
+        "gst": "5040",
+        "gst_separate": true
+      },
+      "expected": {
+        "acceptable": ["CONTRACT_WORK"],
+        "post_as": "CONTRACT_WORK",
+        "tds": "0"
+      }
+    },
+    {
+      "id": "C16",
+      "synthetic": true,
+      "note": "Threshold sequence 2 of 4: aggregate 56,000.",
+      "line": {
+        "vendor": { "name": "QuickFix Electricals", "pan": "AAHFQ8901N" },
+        "date": "2026-06-30",
+        "description": "Electrical repair and maintenance work at Bhiwandi warehouse - June 2026",
+        "sac": "995461",
+        "taxable_value": "28000",
+        "gst": "5040",
+        "gst_separate": true
+      },
+      "expected": {
+        "acceptable": ["CONTRACT_WORK"],
+        "post_as": "CONTRACT_WORK",
+        "tds": "0"
+      }
+    },
+    {
+      "id": "C17",
+      "synthetic": true,
+      "note": "Threshold sequence 3 of 4: aggregate 84,000.",
+      "line": {
+        "vendor": { "name": "QuickFix Electricals", "pan": "AAHFQ8901N" },
+        "date": "2026-07-31",
+        "description": "Electrical repair and maintenance work at Bhiwandi warehouse - July 2026",
+        "sac": "995461",
+        "taxable_value": "28000",
+        "gst": "5040",
+        "gst_separate": true
+      },
+      "expected": {
+        "acceptable": ["CONTRACT_WORK"],
+        "post_as": "CONTRACT_WORK",
+        "tds": "0"
+      }
+    },
+    {
+      "id": "C18",
+      "synthetic": true,
+      "note": "Threshold sequence 4 of 4: aggregate 1,12,000 crosses 1,00,000, so 2% on the whole 1,12,000 including the three earlier untaxed bills.",
+      "line": {
+        "vendor": { "name": "QuickFix Electricals", "pan": "AAHFQ8901N" },
+        "date": "2026-08-31",
+        "description": "Electrical repair and maintenance work at Bhiwandi warehouse - August 2026",
+        "sac": "995461",
+        "taxable_value": "28000",
+        "gst": "5040",
+        "gst_separate": true
+      },
+      "expected": {
+        "acceptable": ["CONTRACT_WORK"],
+        "post_as": "CONTRACT_WORK",
+        "tds": "2240"
+      }
+    },
+    {
+      "id": "C19",
+      "synthetic": true,
+      "note": "Doctor with no PAN on file: professional fees at 20% instead of 10%.",
+      "line": {
+        "vendor": { "name": "Dr. R. Menon", "pan": null },
+        "date": "2026-08-20",
+        "description": "Annual health check-up camp for employees - doctor's consultation fees",
+        "sac": "999312",
+        "taxable_value": "60000",
+        "gst": "0",
+        "gst_separate": true
+      },
+      "expected": {
+        "acceptable": ["PROFESSIONAL_FEES"],
+        "post_as": "PROFESSIONAL_FEES",
+        "tds": "12000"
+      }
+    },
+    {
+      "id": "C20",
+      "synthetic": true,
+      "note": "Transition pair 1 of 2: invoice dated March 2026, so the 1961 Act applies (s.194J(1)(a)) and the model sees only 1961 text.",
+      "line": {
+        "vendor": { "name": "Neha Kapoor, Architect", "pan": "AKNPK9012P" },
+        "date": "2026-03-16",
+        "description": "Architectural drawings for warehouse extension - stage 1 (concept design)",
+        "sac": "998323",
+        "taxable_value": "80000",
+        "gst": "14400",
+        "gst_separate": true
+      },
+      "expected": {
+        "acceptable": ["PROFESSIONAL_FEES"],
+        "post_as": "PROFESSIONAL_FEES",
+        "tds": "8000"
+      }
+    },
+    {
+      "id": "C21",
+      "synthetic": true,
+      "note": "Transition pair 2 of 2: same vendor, April 2026, so the 2025 Act (s.393(1) Table Sl. No. 6(iii)(a), code 1027) and a fresh tax-year aggregate.",
+      "line": {
+        "vendor": { "name": "Neha Kapoor, Architect", "pan": "AKNPK9012P" },
+        "date": "2026-04-10",
+        "description": "Architectural drawings for warehouse extension - stage 2 (working drawings)",
+        "sac": "998323",
+        "taxable_value": "80000",
+        "gst": "14400",
+        "gst_separate": true
+      },
+      "expected": {
+        "acceptable": ["PROFESSIONAL_FEES"],
+        "post_as": "PROFESSIONAL_FEES",
+        "tds": "8000"
+      }
+    },
+    {
+      "id": "C22",
+      "synthetic": true,
+      "note": "No information about what the service is.",
+      "line": {
+        "vendor": { "name": "Orbit Solutions Pvt Ltd", "pan": "AAICO0123Q" },
+        "date": "2026-07-05",
+        "description": "Services as per agreement dated 01.04.2026 - Q1 charges",
+        "sac": null,
+        "taxable_value": "150000",
+        "gst": "27000",
+        "gst_separate": true
+      },
+      "expected": { "acceptable": ["NEEDS_INFO"] }
+    },
+    {
+      "id": "C23",
+      "synthetic": true,
+      "note": "Sitting fees to a director: 10%, no threshold.",
+      "line": {
+        "vendor": { "name": "Prof. Kavita Rao", "pan": "AKRPR1234S" },
+        "date": "2026-08-12",
+        "description": "Sitting fees for board meeting held on 12 August 2026",
+        "sac": null,
+        "taxable_value": "20000",
+        "gst": "0",
+        "gst_separate": true
+      },
+      "expected": {
+        "acceptable": ["DIRECTOR_FEES"],
+        "post_as": "DIRECTOR_FEES",
+        "tds": "2000"
+      }
+    },
+    {
+      "id": "C24",
+      "synthetic": true,
+      "note": "Printing to our design. Under s.402(47)(e) this is work only if the paper is bought from us; if the printer uses its own paper it is a sale. The invoice does not say, so the right answer is to ask.",
+      "line": {
+        "vendor": { "name": "PrintWell Offset", "pan": "AAJFP2345T" },
+        "date": "2026-09-10",
+        "description": "Printing of 10,000 product brochures, A4, 4-colour, as per artwork supplied by us",
+        "sac": "998912",
+        "taxable_value": "110000",
+        "gst": "19800",
+        "gst_separate": true
+      },
+      "expected": { "acceptable": ["NEEDS_INFO"] }
+    }
+  ]
+}

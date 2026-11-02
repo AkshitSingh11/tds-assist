@@ -1,0 +1,86 @@
+{
+ "act": "ITA1961",
+ "title": "Income-tax Act, 1961 (as applicable to FY 2025-26)",
+ "effective_from": "2025-04-01",
+ "effective_to": "2026-03-31",
+ "retrieved_on": "2026-11-01",
+ "note": "Only definition clauses are included. The consolidated texts on the public source still show pre-2025 thresholds (e.g. ₹20,000 under 194J), so rates and thresholds are NOT taken from here; they live in rules.py, sourced from the Finance Act 2025 amendments. The 194C 'work' text on the source omits the later 'associate' amendment; it is reproduced as published. Indian Kanoon's editorial insertion notes ('[Substituted by Act ... ]') are removed. Verified 2026-11-01 by normalised substring match against the source page. 'supports' maps each category to the parts of the clause that can ground it ('*' = the whole clause); a quote supports a category only if it overlaps that category's parts and no other category's.",
+ "chunks": [
+  {
+   "id": "1961:194C(1)",
+   "ref": "Section 194C(1) (Payments to contractors) — operative words",
+   "source_url": "https://indiankanoon.org/doc/1195538/",
+   "text": "Any person responsible for paying any sum to any resident (hereafter in this section referred to as the contractor) for carrying out any work (including supply of labour for carrying out any work) in pursuance of a contract between the contractor and a specified person shall, at the time of credit of such sum to the account of the contractor or at the time of payment thereof in cash or by issue of a cheque or draft or by any other mode, whichever is earlier, deduct an amount equal to-(i) one per cent. where the payment is being made or credit is being given to an individual or a Hindu undivided family; (ii) two per cent. where the payment is being made or credit is being given to a person other than an individual or a Hindu undivided family, of such sum as income-tax on income comprised therein.",
+   "supports": {
+    "CONTRACT_WORK": [
+     "*"
+    ]
+   }
+  },
+  {
+   "id": "1961:194C-Expl(iv)",
+   "ref": "Section 194C, Explanation (iv) (\"work\")",
+   "source_url": "https://indiankanoon.org/doc/1195538/",
+   "text": "\"work\" shall include-(a) advertising; (b) broadcasting and telecasting including production of programmes for such broadcasting or telecasting; (c) carriage of goods or passengers by any mode of transport other than by railways; (d) catering; (e) manufacturing or supplying a product according to the requirement or specification of a customer by using material purchased from such customer, but does not include manufacturing or supplying a product according to the requirement or specification of a customer by using material purchased from a person, other than such customer.",
+   "supports": {
+    "CONTRACT_WORK": [
+     "\"work\" shall include-(a) advertising; (b) broadcasting and telecasting including production of programmes for such broadcasting or telecasting; (c) carriage of goods or passengers by any mode of transport other than by railways; (d) catering; (e) manufacturing or supplying a product according to the requirement or specification of a customer by using material purchased from such customer,"
+    ],
+    "GOODS_PURCHASE": [
+     "but does not include manufacturing or supplying a product according to the requirement or specification of a customer by using material purchased from a person, other than such customer"
+    ]
+   }
+  },
+  {
+   "id": "1961:194J-Expl",
+   "ref": "Section 194J, Explanation (a) and (b) (\"professional services\", \"fees for technical services\")",
+   "source_url": "https://indiankanoon.org/doc/503717/",
+   "text": "(a) \"professional services\" means services rendered by a person in the course of carrying on legal, medical, engineering or architectural profession or the profession of accountancy or technical consultancy or interior decoration or advertising or such other profession as is notified by the Board for the purposes of section 44-AA or of this section; (b) \"fees for technical services\" shall have the same meaning as in Explanation 2 to clause (vii) of sub-section (1) of section 9;",
+   "supports": {
+    "PROFESSIONAL_FEES": [
+     "(a) \"professional services\" means services rendered by a person in the course of carrying on legal, medical, engineering or architectural profession or the profession of accountancy or technical consultancy or interior decoration or advertising or such other profession as is notified by the Board for the purposes of section 44-AA or of this section"
+    ],
+    "TECHNICAL_FEES": [
+     "(b) \"fees for technical services\" shall have the same meaning as in Explanation 2 to clause (vii) of sub-section (1) of section 9"
+    ]
+   }
+  },
+  {
+   "id": "1961:9(1)(vii)-Expl2",
+   "ref": "Section 9(1)(vii), Explanation 2 (\"fees for technical services\")",
+   "source_url": "https://indiankanoon.org/doc/1369261/",
+   "text": "\"fees for technical services\" means any consideration (including any lump sum consideration) for the rendering of any managerial, technical or consultancy services (including the provision of services of technical or other personnel) but does not include consideration for any construction, assembly, mining or like project undertaken by the recipient or consideration which would be income of the recipient chargeable under the head \"Salaries\".",
+   "supports": {
+    "TECHNICAL_FEES": [
+     "*"
+    ]
+   }
+  },
+  {
+   "id": "1961:194H-Expl(i)",
+   "ref": "Section 194H, Explanation (i) (\"commission or brokerage\")",
+   "source_url": "https://indiankanoon.org/doc/1270798/",
+   "text": "\"commission or brokerage\" includes any payment received or receivable, directly or indirectly, by a person acting on behalf of another person for services rendered (not being professional services) or for any services in the course of buying or selling of goods or in relation to any transaction relating to any asset, valuable article or thing, not being securities;",
+   "supports": {
+    "COMMISSION": [
+     "*"
+    ]
+   }
+  },
+  {
+   "id": "1961:194I-Expl(i)",
+   "ref": "Section 194-I, Explanation (i) (\"rent\")",
+   "source_url": "https://indiankanoon.org/doc/187879/",
+   "text": "\"rent\" means any payment, by whatever name called, under any lease, sub-lease, tenancy or any other agreement or arrangement for the use of (either separately or together) any,- (a) land; or (b) building (including factory building); or (c) land appurtenant to a building (including factory building); or (d) machinery; or (e) plant; or (f) equipment; or (g) furniture; or (h) fittings, whether or not any or all of the above are owned by the payee;",
+   "supports": {
+    "RENT_LAND_BUILDING": [
+     "(a) land; or (b) building (including factory building); or (c) land appurtenant to a building (including factory building)",
+     "(g) furniture; or (h) fittings"
+    ],
+    "RENT_PLANT_MACHINERY": [
+     "(d) machinery; or (e) plant; or (f) equipment"
+    ]
+   }
+  }
+ ]
+}

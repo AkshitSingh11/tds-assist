@@ -1,0 +1,167 @@
+{
+ "act": "ITA2025",
+ "title": "Income-tax Act, 2025",
+ "effective_from": "2026-04-01",
+ "effective_to": null,
+ "retrieved_on": "2026-11-01",
+ "note": "Verbatim extracts. Table rows are flattened to text; column labels (Payer/Rate/Threshold) are kept inline. Only provisions relevant to a company paying a resident are included. Verified 2026-11-01 by normalised substring match against the source page; differences are only table-cell flattening. 'supports' maps each category to the parts of the clause that can ground it ('*' = the whole clause); a quote supports a category only if it overlaps that category's parts and no other category's.",
+ "chunks": [
+  {
+   "id": "2025:393(1)",
+   "ref": "Section 393(1) (opening words)",
+   "source_url": "https://indiankanoon.org/doc/116609761/",
+   "text": "Where any income or sum of the nature specified in column B of the Table below, is credited or paid or distributed by the person specified in column C during the tax year, to a resident, the person responsible for paying such income or sum shall deduct income-tax,—(a) on the entire amount of such income or sum, where the amount or aggregate of amounts exceeds the threshold limit specified in column D, or on sum as per Note 1 for serial number 8(ii), as the case may be; (b) at the rate specified in column D; (c) at the time of credit of such income or sum to the account of the payee or at the time of its payment in cash or by way of a cheque or a draft or by any other mode, whichever is earlier; and (d) subject to the provisions of sub-sections (4), (5), (6), (8) and (9).",
+   "supports": {}
+  },
+  {
+   "id": "2025:393(1)T1",
+   "ref": "Section 393(1) Table Sl. No. 1 (Commission or brokerage)",
+   "source_url": "https://indiankanoon.org/doc/116609761/",
+   "text": "1. Commission or brokerage. (i) Any income by way of remuneration or reward, whether by way of commission or otherwise, for soliciting or procuring insurance business (including business relating to the continuance, renewal or revival of insurance policies). Payer: Any person. Rate: Rates in force. Threshold limit: ₹ 20,000. (ii) Any income by way of commission [not being insurance commission referred to in serial number 1(i)] or brokerage. Payer: Specified person. Rate: 2%. Threshold limit: ₹ 20,000.",
+   "supports": {
+    "COMMISSION": [
+     "(ii) Any income by way of commission [not being insurance commission referred to in serial number 1(i)] or brokerage"
+    ]
+   }
+  },
+  {
+   "id": "2025:393(1)T2",
+   "ref": "Section 393(1) Table Sl. No. 2 (Rent)",
+   "source_url": "https://indiankanoon.org/doc/116609761/",
+   "text": "2. Rent. (i) Any income by way of rent. Payer: Person other than specified person. Rate: 2%. Threshold limit: ₹ 50,000 for a month or part of a month. (ii) Any income by way of rent. Payer: Specified person. Rate: (a) 2%, for the use of any machinery or plant or equipment; and (b) 10%, for the use of any land, or building (including factory building), or land appurtenant to a building (including factory building), or furniture, or fittings. Threshold limit [for (a) and (b)]: ₹ 50,000 for a month or part of a month.",
+   "supports": {
+    "RENT_PLANT_MACHINERY": [
+     "(a) 2%, for the use of any machinery or plant or equipment"
+    ],
+    "RENT_LAND_BUILDING": [
+     "(b) 10%, for the use of any land, or building (including factory building), or land appurtenant to a building (including factory building), or furniture, or fittings"
+    ]
+   }
+  },
+  {
+   "id": "2025:393(1)T6(i)",
+   "ref": "Section 393(1) Table Sl. No. 6(i) (Payments to contractors)",
+   "source_url": "https://indiankanoon.org/doc/116609761/",
+   "text": "6. Payments to contractors, fees for professional and technical services, etc. (i) Any sum for carrying out any work (including supply of labour for carrying out any work) in pursuance of a contract between the contractor and a designated person. Payer: Any designated person. Rate: (a) 1%, if contractor is individual or Hindu undivided family; (b) 2%, if contractor is a person other than the person mentioned in (a). Threshold limit: [for (a) and (b)] (a) ₹ 30000; for any such sum; and (b) ₹ 100000 in case of aggregate of such sums.",
+   "supports": {
+    "CONTRACT_WORK": [
+     "*"
+    ]
+   }
+  },
+  {
+   "id": "2025:393(1)T6(iii)",
+   "ref": "Section 393(1) Table Sl. No. 6(iii) (Professional and technical fees, director remuneration, royalty)",
+   "source_url": "https://indiankanoon.org/doc/116609761/",
+   "text": "(iii) Any sum by way of–– fees for (a) professional services; or (b) fees for technical services; or (c) remuneration or fees or commission by whatever name called, other than those on which tax is deductible under section 392, to a director of a company; or (d) royalty; or (e) any sum referred to in section 26(2)(h). Payer: Specified person. Rate: (a) 2% of such sum in case of—(i) fees for technical services (not being a professional services); or (ii) royalty in the nature of consideration for sale, distribution or exhibition of cinematographic films; or (iii) payee, engaged only in the business of operation of call centre; (b) 10% of such sum in cases other than (a). Threshold limit: (i) for (a), (b), (d) and (e) of Col. B: ₹ 50,000. (ii) for (c) of Col. B: Nil.",
+   "supports": {
+    "PROFESSIONAL_FEES": [
+     "fees for (a) professional services"
+    ],
+    "TECHNICAL_FEES": [
+     "(b) fees for technical services",
+     "fees for technical services (not being a professional services)"
+    ],
+    "DIRECTOR_FEES": [
+     "(c) remuneration or fees or commission by whatever name called, other than those on which tax is deductible under section 392, to a director of a company",
+     "(ii) for (c) of Col. B: Nil"
+    ]
+   }
+  },
+  {
+   "id": "2025:393(1)T6-Note",
+   "ref": "Section 393(1) Table Sl. No. 6, Note",
+   "source_url": "https://indiankanoon.org/doc/116609761/",
+   "text": "Note.––In serial number 6 (i), if any sum is paid or credited for carrying out any work specified in section 402(47)(e), tax shall be deducted at source—(a) on the invoice value excluding the value of material, if such value is specified separately in the invoice; or (b) on the whole of the invoice value, if the value of material is not specified separately in the invoice.",
+   "supports": {
+    "CONTRACT_WORK": [
+     "*"
+    ]
+   }
+  },
+  {
+   "id": "2025:393(1)T8(ii)",
+   "ref": "Section 393(1) Table Sl. No. 8(ii) (Purchase of goods) and Note 1",
+   "source_url": "https://indiankanoon.org/doc/116609761/",
+   "text": "(ii) Any sum exceeding fifty lakh rupees for purchase of any goods. Payer: Any person, being a buyer. Rate: 0.1%. Threshold limit: As per Note 1. Note 1.––(a) The deduction of tax under serial number 8(ii) shall not apply to a transaction on which tax is deductible or collectible under any of the provisions of the Act. (b) The tax shall be deducted on the sum exceeding fifty lakh rupees.",
+   "supports": {
+    "GOODS_PURCHASE": [
+     "*"
+    ]
+   }
+  },
+  {
+   "id": "2025:393(4)T8",
+   "ref": "Section 393(4) Table Sl. No. 8 (No deduction: small goods-carriage operators)",
+   "source_url": "https://indiankanoon.org/doc/116609761/",
+   "text": "8. Payments to contractors referred to in section 393(1) [Table: Sl. No. 6(i)]. (a) Where––(i) any sum credited or paid or likely to be credited or paid during the tax year to the account of a contractor during the course of business of plying, hiring or leasing goods carriages; and (ii) that contractor owns ten or less goods carriages at any time during the tax year; and (iii) furnishes a declaration to that effect along with his Permanent Account Number to the person paying or crediting the sum; and (iv) the person responsible for paying to the contractor furnishes to the prescribed income- tax authority the particulars in such form and within such time as may be prescribed.",
+   "supports": {
+    "CONTRACT_WORK": [
+     "*"
+    ]
+   }
+  },
+  {
+   "id": "2025:402(7)",
+   "ref": "Section 402(7) (\"commission or brokerage\")",
+   "source_url": "https://indiankanoon.org/doc/78786565/",
+   "text": "\"commission or brokerage\" includes any payment received or receivable, directly or indirectly, by a person acting on behalf of another person,––(a) for services rendered (not being professional services); or (b) for any services in the course of buying or selling of goods; or (c) in relation to any transaction relating to any asset, valuable article or thing, not being securities;",
+   "supports": {
+    "COMMISSION": [
+     "*"
+    ]
+   }
+  },
+  {
+   "id": "2025:402(28)",
+   "ref": "Section 402(28) (\"professional services\")",
+   "source_url": "https://indiankanoon.org/doc/78786565/",
+   "text": "\"professional services\" means services rendered by a person in the course of carrying on legal, medical, engineering or architectural profession or the profession of accountancy or technical consultancy or interior decoration or advertising or such other profession as may be notified by the Board for the purposes of this section, or of section 62;",
+   "supports": {
+    "PROFESSIONAL_FEES": [
+     "*"
+    ]
+   }
+  },
+  {
+   "id": "2025:402(29)",
+   "ref": "Section 402(29) (\"rent\")",
+   "source_url": "https://indiankanoon.org/doc/78786565/",
+   "text": "\"rent\" means any payment, by whatever name called, under any lease, sub-lease, tenancy or any other agreement or arrangement for the use of (either separately or together) any—(a) land; or (b) building (including factory building); or (c) land appurtenant to a building (including factory building); or (d) machinery; or (e) plant; or (f) equipment; or (g) furniture; or (h) fittings, whether or not any or all of the above are owned by the payee, and for the purposes of section 393(1) [Table: Sl. No. 2(i)], only the payment with reference to assets mentioned in sub-clauses (a), (b) and (c) shall be treated as rent;",
+   "supports": {
+    "RENT_LAND_BUILDING": [
+     "(a) land; or (b) building (including factory building); or (c) land appurtenant to a building (including factory building)",
+     "(g) furniture; or (h) fittings"
+    ],
+    "RENT_PLANT_MACHINERY": [
+     "(d) machinery; or (e) plant; or (f) equipment"
+    ]
+   }
+  },
+  {
+   "id": "2025:402(47)",
+   "ref": "Section 402(47) (\"work\")",
+   "source_url": "https://indiankanoon.org/doc/78786565/",
+   "text": "\"work\" shall include—(a) advertising; (b) broadcasting and telecasting including production of programmes for such broadcasting or telecasting; (c) carriage of goods or passengers by any mode of transport other than by railways; (d) catering; (e) manufacturing or supplying a product according to the requirement or specification of a customer by using material purchased from––(i) such customer; or (ii) its associate, being a person placed similarly in relation to such customer as is the person placed in relation to the assessee under the provisions contained in section 36(3), but does not include—(A) manufacturing or supplying a product according to the requirement or specification of a customer by using material purchased from a person, other than such customer or associate of such customer; or (B) any sum referred to in section 393(1) [Table: Sl. No. 6(iii)].",
+   "supports": {
+    "CONTRACT_WORK": [
+     "\"work\" shall include—(a) advertising; (b) broadcasting and telecasting including production of programmes for such broadcasting or telecasting; (c) carriage of goods or passengers by any mode of transport other than by railways; (d) catering; (e) manufacturing or supplying a product according to the requirement or specification of a customer by using material purchased from––(i) such customer; or (ii) its associate"
+    ],
+    "GOODS_PURCHASE": [
+     "(A) manufacturing or supplying a product according to the requirement or specification of a customer by using material purchased from a person, other than such customer or associate of such customer"
+    ]
+   }
+  },
+  {
+   "id": "2025:9(7)(b)",
+   "ref": "Section 9(7)(b) (\"fees for technical services\", applied by section 402(15))",
+   "source_url": "https://indiankanoon.org/doc/44771753/",
+   "text": "\"fees for technical services\" means any consideration (including any lump sum consideration) for the rendering of any managerial, technical or consultancy services (including the provision of services of technical or other personnel) but does not include consideration—(i) for any construction, assembly, mining or like project undertaken by the recipient; or (ii) which would be income of the recipient chargeable under the head \"Salaries\".",
+   "supports": {
+    "TECHNICAL_FEES": [
+     "*"
+    ]
+   }
+  }
+ ]
+}

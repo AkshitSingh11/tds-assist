@@ -1,0 +1,7 @@
+.superpowers/
+__pycache__/
+.venv/
+.pytest_cache/
+*.pyc
+take_home.pdf
+llm-logs.zip
