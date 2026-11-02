@@ -1,6 +1,6 @@
 # tds-assist
 
-A prototype that suggests the TDS (tax deducted at source) treatment of a vendor invoice line for an Indian company. The output covers the nature of payment, the section and payment code, the rate and the amount. Every suggestion carries a statute citation and goes to an accounts-payable reviewer. The design and the answers to the assignment questions are in [BRIEF.md](BRIEF.md) (4 pages), with the full reasoning in [DESIGN.md](DESIGN.md).
+A prototype that suggests the TDS (tax deducted at source) treatment of a vendor invoice line for an Indian company. The output covers the nature of payment, the section and payment code, the rate and the amount. Every suggestion carries a statute citation and goes to an accounts-payable reviewer.
 
 All data in this repository is public (statute text) or synthetic (invoices, vendors, PANs).
 
