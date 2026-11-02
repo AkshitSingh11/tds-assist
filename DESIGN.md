@@ -1,7 +1,5 @@
 # Design notes: TDS on vendor invoices
 
-The long version of [BRIEF.md](BRIEF.md). The brief is the 4-page summary; this file has the full reasoning, the worked examples, the evidence and the risk analysis it draws on. Section numbers match the brief.
-
 **In one paragraph.** Every Indian company must withhold tax (TDS) from most vendor payments, at a rate set by the *nature* of the payment: contract work, professional fees, rent, commission and so on. Deciding the nature means reading a free-text invoice line against legal definitions, which is a reading job. Everything after that (section, rate, threshold, payment code, amount) is arithmetic on a rules table that changed completely on 1 April 2026. The prototype splits the job along that line. One LLM call picks the category and must quote the statute words it relied on. Code checks the quote, applies dated rules and the vendor's year-to-date ledger, and routes every line GREEN, AMBER or RED to a human who approves it.
 
 **What a user sees.** An AP accountant enters one invoice line:
